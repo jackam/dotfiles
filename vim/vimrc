@@ -1,0 +1,101 @@
+"  ADD swap buffer places shortcut
+"  ADD alternate ctrl-[ key
+execute pathogen#infect()
+
+" tabs and indention {
+" use spaces instead of /t
+" set expandtab"
+
+" use a mixture of spaces & tabs.
+set tabstop=4
+
+" tabs to move forward and spaces moving backward 
+" set softtabstop=4
+
+" set the amount of column intendations that will be used when moving blocks of text forward and backward in visual mode 
+set shiftwidth=4
+
+" auto indent after /n
+set autoindent
+
+" auto indent after {
+set smartindent
+" }
+
+" todo {
+set number
+set ruler
+set laststatus=2
+set cursorline
+set ignorecase
+" }
+
+" set listchars=tab:\|\ 
+" set list
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indentLine_char = "|"
+" let g:indentLine_enabled = 1
+" let g:indentLine_color_gui = "#908483"
+
+" maximizes the amount of colors available to vim {
+set t_Co=256
+
+" no idea what this does that t_Co doesn't already do
+let base16colorspace=256
+" }
+
+" paste from the host operating system {
+set clipboard+=unnamed
+" }
+
+
+autocmd VimEnter * NERDTree /Users/j6ck6l/dev
+autocmd VimEnter * wincmd p
+map <C-n> :NERDTreeToggle<CR>
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let NERDTreeShowHidden=1
+" Buffer movement with control
+map <S-J> :bprev<CR>
+map <S-K> :bnext<CR>
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+map <C-I> <C-[>
+
+
+" Font style and size {
+    if has("gui_running")
+        "  MacOS
+        if has("gui_macvim")
+            set guifont=Source\ Code\ Pro:h13
+        "  Windows:
+        "  elseif has("gui_gtk2")
+        "    set guifont=Inconsolata\ 12
+        "  Alt OS
+        "  else has("gui_win32")
+        "  set guifont=Consolas:h11:cANSI
+        endif
+    endif
+"}
+
+" Vim-bufferline {
+    " show buffer numbers
+    let g:bufferline_show_bufnr = 1
+    " scroll with fix current buffer position
+    let g:bufferline_rotate = 1
+"}
+
+" Vim-airline {
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#wordcount#enabled = 1
+    " remove the utf-8 
+    let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+    " show only the filename
+    let g:airline#extensions#tabline#fnamemod = ':t'
+"}
+
+" au BufWinEnter * set number
+
+colorscheme gruvbox
+set background=dark
+
+syntax on
