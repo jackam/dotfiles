@@ -48,8 +48,10 @@ let base16colorspace=256
 set clipboard+=unnamed
 " }
 
+" open nerdtree at directory
+" autocmd VimEnter * NERDTree /Users/j6ck6l/dev
+autocmd VimEnter * NERDTree /home/j6ck6l/dev
 
-autocmd VimEnter * NERDTree /Users/j6ck6l/dev
 autocmd VimEnter * wincmd p
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
