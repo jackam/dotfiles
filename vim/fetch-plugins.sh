@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir ./bundle
+
 git clone https://github.com/scrooloose/nerdtree.git ./bundle/nerdtree
 
 git clone https://github.com/ctrlpvim/ctrlp.vim.git ./bundle/ctrlp
