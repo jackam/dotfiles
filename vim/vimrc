@@ -1,117 +1,128 @@
-"  ADD remap erase by word --> [insert mode] ctrl-w
-"  ADD remap erase by line --> [insert mode] ctrl-u 
-"  ADD swap buffer places shortcut
-"  ADD alternate ctrl-[ key
+"  Todo:
+"  - print the settings configured in this file to screen for a visual check when starting
+"  - add remap erase by word --> [insert mode] ctrl-w
+"  - add remap erase by line --> [insert mode] ctrl-u
+"  - add swap buffer places shortcut
+"  - add alternate ctrl-[ key
+
+" Troubleshooting:
+" - verify what the setting is currently set to with: :verbose set autoindent?
 
 " Pathogen Pluging Manager {
-	execute pathogen#infect()
+    execute pathogen#infect()
 " }
 
-" Format {
-	" use a mixture of spaces & tabs.
-	set tabstop=4
-	" set the amount of column intendations that will be used when moving blocks of text forward and backward in visual mode 
-	set shiftwidth=4
-
-	" auto indent after /n
-	set autoindent
-	" auto indent after {
-	set smartindent
-" }
-
-" Todo {
-	set number
-	set ruler
-	set laststatus=2
-	set cursorline
-	set ignorecase
-" }
-
-" Indent {
-	" indentation guide 
-	set listchars=tab:\|\ 
-	set list
-	" let g:indent_guides_enable_on_vim_startup = 1
-	" let g:indentLine_char = "|"
-	" let g:indentLine_enabled = 1
-	" let g:indentLine_color_gui = "#908483"
-" }
 
 " Color {
-	" color space 
-	set t_Co=256
-	let base16colorspace=256
+    " color space
+    set t_Co=256
+    let base16colorspace=256
 
-	
-	colorscheme gruvbox
-	set background=dark
+    
+    colorscheme gruvbox
+    set background=dark
 
-	syntax on
+    syntax on
 " }
 
-" Paste from host clipboard {
-	set clipboard+=unnamed
+
+" Pasting {
+    " paste to clipboard
+    set clipboard+=unnamed
+    " set the paste environment
+    set paste
 " }
 
-" File Manager {
-	" Nerdtree
-		" open nerdtree at directory
-		" autocmd VimEnter * NERDTree /home/j6ck6l/dev
-		autocmd VimEnter * NERDTree
-		autocmd VimEnter * wincmd p
-		map <C-n> :NERDTreeToggle<CR>
-		map <Leader>n <plug>NERDTreeTabsToggle<CR>
-		let NERDTreeShowHidden=1
 
-	" Netrw 
-		" let g:netrw_banner = 0
-		" let g:netrw_liststyle = 3
-		" let g:netrw_browse_split = 4
-		" let g:netrw_altv = 1
-		" let g:netrw_winsize = 15
-		" augroup ProjectDrawer
-		" autocmd!
-		" autocmd VimEnter * :Vexplore
-		" augroup END
+" File Managers {
+    " Nerdtree
+        " open nerdtree at directory
+        " autocmd VimEnter * NERDTree /home/j6ck6l/dev
+        autocmd VimEnter * NERDTree
+        autocmd VimEnter * wincmd p
+        map <C-n> :NERDTreeToggle<CR>
+        map <Leader>n <plug>NERDTreeTabsToggle<CR>
+        let NERDTreeShowHidden=1
+
+    " Netrw
+        " let g:netrw_banner = 0
+        " let g:netrw_liststyle = 3
+        " let g:netrw_browse_split = 4
+        " let g:netrw_altv = 1
+        " let g:netrw_winsize = 15
+        " augroup ProjectDrawer
+        " autocmd!
+        " autocmd VimEnter * :Vexplore
+        " augroup END
 " }
 
 " Buffer control {
-	map <S-J> :bprev<CR>
-	map <S-K> :bnext<CR>
-	map <C-h> <C-W>h
-	map <C-l> <C-W>l
-	map <C-I> <C-[>
+    map <S-J> :bprev<CR>
+    map <S-K> :bnext<CR>
+    map <C-h> <C-W>h
+    map <C-l> <C-W>l
+    map <C-I> <C-[>
 " }
 
 " Font {
-    if has("gui_running")
-        "  MacOS
-        if has("gui_macvim")
-            set guifont=Source\ Code\ Pro:h13
-        "  Windows:
-        "  elseif has("gui_gtk2")
-        "    set guifont=Inconsolata\ 12
-        "  Alt OS
-        "  else has("gui_win32")
-        "  set guifont=Consolas:h11:cANSI
-        endif
-    endif
+   if has("gui_running")
+       "  MacOS
+       if has(“gui_macvim")
+           set guifont=Source\ Code\ Pro:h13
+       "  Windows:
+       "  elseif has(“gui_gtk2")
+       "    set guifont=Inconsolata\ 12
+       "  Alt OS
+       "  else has(“gui_win32")
+       "  set guifont=Consolas:h11:cANSI
+       endif
+   endif
 " }
 
 " Vim-bufferline {
-    " show buffer numbers
-    let g:bufferline_show_bufnr = 1
-    " scroll with fix current buffer position
-    let g:bufferline_rotate = 1
-"}
+   " show buffer numbers
+   let g:bufferline_show_bufnr = 1
+   " scroll with fix current buffer position
+   let g:bufferline_rotate = 1
+" }
 
 " Vim-airline {
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#wordcount#enabled = 1
-    " remove the utf-8 
-    let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-    " show only the filename
-    let g:airline#extensions#tabline#fnamemod = ':t'
+   let g:airline#extensions#tabline#enabled = 1
+   let g:airline#extensions#wordcount#enabled = 1
+   " remove the utf-8
+   let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+   " show only the filename
+   let g:airline#extensions#tabline#fnamemod = ':t'
 " }
 
 
+" Display {
+    set number
+    set ruler
+    set laststatus=2
+    set cursorline
+    set ignorecase
+" }
+
+" Indent {
+    " indentation guide
+    set listchars=tab:\|\
+    set list
+    " let g:indent_guides_enable_on_vim_startup = 1
+    " let g:indentLine_char = “|"
+    " let g:indentLine_enabled = 1
+    " let g:indentLine_color_gui = “#908483"
+" }
+
+" Format {
+    " formatting at the bottom of vimrc due to mysterious autoindent set always to noautoindent
+
+    " use a mixture of spaces & tabs.
+    set tabstop=4
+    " set the amount of column intendations that will be used when moving blocks of text forward and backward in visual mode
+    set shiftwidth=4
+    " auto indent after /n
+    set autoindent
+    " detect file type for language specific indentation - filetype on / plugin on / indent on
+    filetype plugin indent on
+" }
