@@ -9,10 +9,10 @@
 " - verify what the setting is currently set to with: :verbose set autoindent?
 
 " plugin { 
-	" plugin manager - pathogen
+	" manager - pathogen
 		execute pathogen#infect()
 
-	" file manager - nerdtree
+	" file explorer - nerdtree
 		autocmd VimEnter * NERDTree
 		autocmd VimEnter * wincmd p
 		map <C-n> :NERDTreeToggle<CR>
@@ -58,9 +58,6 @@
 
 	" set the paste environment
 		set paste
-
-	" highlight search results
-		set hlsearch
 " }
 
 " buffer view {
@@ -71,6 +68,9 @@
 	" color scheme
 		colorscheme gruvbox
 		set background=dark
+
+	" highlight search results
+		set hlsearch
 
 	" show line numbers
 		set number
@@ -110,6 +110,14 @@
 		filetype plugin indent on
 " }
 
+" system {
+	" keep backups
+		set backup
 
+	" backup directory
+		set backupdir=~/backup
 
+	" temporary file directory
+		set directory=~/tmp/vim
+" }
 
