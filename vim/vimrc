@@ -8,115 +8,108 @@
 " troubleshooting:
 " - verify what the setting is currently set to with: :verbose set autoindent?
 
-" pathogen plugin manager {
-    execute pathogen#infect()
+" plugin { 
+	" plugin manager - pathogen
+		execute pathogen#infect()
+
+	" file manager - nerdtree
+		autocmd VimEnter * NERDTree
+		autocmd VimEnter * wincmd p
+		map <C-n> :NERDTreeToggle<CR>
+		map <Leader>n <plug>NERDTreeTabsToggle<CR>
+		let NERDTreeShowHidden=1
+
+	" buffer manager - vim-bufferline
+	   " show buffer numbers
+		   let g:bufferline_show_bufnr = 1
+	   " scroll with fix current buffer position
+		   let g:bufferline_rotate = 1
+
+	" status bar manager - vim-airline
+	   " remove the utf-8
+		   let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+		   let g:airline#extensions#tabline#enabled = 1
+		   let g:airline#extensions#wordcount#enabled = 1
+	   " show only the filename
+	   let g:airline#extensions#tabline#fnamemod = ':t'
 " }
 
+" UI action {
+	" buffer control
+		map <S-J> :bprev<CR>
+		map <S-K> :bnext<CR>
+		map <C-h> <C-W>h
+		map <C-l> <C-W>l
+		map <C-I> <C-[>
 
-" color {
-    " color space
-    set t_Co=256
-    let base16colorspace=256
-    
-    colorscheme gruvbox
-    set background=dark
+	" center cursor toggle
+		nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
-    syntax on
+	" highlight search results  - \hl and \\
+		nmap <Leader>hl :set hls!<CR>
+		nmap <Leader>\  :set hls!<CR>
+
+	" remove highlights on next search
+		nnoremap / :set hlsearch<CR>/
 " }
 
+	" paste to clipboard
+		set clipboard+=unnamed
 
-" copy/paste {
-    " paste to clipboard
-    set clipboard+=unnamed
-    " set the paste environment
-    set paste
+	" set the paste environment
+		set paste
+
+	" highlight search results
+		set hlsearch
 " }
 
-" search {
-	" highlight all search results
-	set hlsearch
-" }
+" buffer view {
+	" color gamut
+		set t_Co=256
+		let base16colorspace=256
 
-" file manager {
-    " nerdtree
-        " open nerdtree at directory
-        " autocmd VimEnter * NERDTree /home/j6ck6l/dev
-        autocmd VimEnter * NERDTree
-        autocmd VimEnter * wincmd p
-        map <C-n> :NERDTreeToggle<CR>
-        map <Leader>n <plug>NERDTreeTabsToggle<CR>
-        let NERDTreeShowHidden=1
-" }
+	" color scheme
+		colorscheme gruvbox
+		set background=dark
 
-" buffer control {
-    map <S-J> :bprev<CR>
-    map <S-K> :bnext<CR>
-    map <C-h> <C-W>h
-    map <C-l> <C-W>l
-    map <C-I> <C-[>
-" }
+	" show line numbers
+		set number
 
-" set font style outside of a terminal environment (gui) {
-   if has("gui_running")
-       "  macos
-       if has(“gui_macvim")
-       		set guifont=Source\ Code\ Pro:h13
-	   "  linux
-       elseif has(“gui_gtk2")
-       		set guifont=Inconsolata\ 12
-       endif
-   endif
-" }
+	" show cursor position line and column number
+		set ruler
 
-" vim-bufferline {
-   " show buffer numbers
-   let g:bufferline_show_bufnr = 1
-   " scroll with fix current buffer position
-   let g:bufferline_rotate = 1
-" }
+	" always show status line for the last window
+		set laststatus=2
 
-" vim-airline {
-   let g:airline#extensions#tabline#enabled = 1
-   let g:airline#extensions#wordcount#enabled = 1
-   " remove the utf-8
-   let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-   " show only the filename
-   let g:airline#extensions#tabline#fnamemod = ':t'
-" }
+	" highlight cursor line
+		set cursorline
 
-" scroll {
+	" ignore letter casing
+		set ignorecase
+
+	" syntax on
+		syntax enable
+
 	" center cursor
-	set scrolloff=999
-	" toggle center cursor
-	nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
-	" map \\ and \hl to highlight search results
-	nmap <Leader>hl :set hls!<CR>
-	nmap <Leader>\  :set hls!<CR>
-	" remove current highlights on search
-	nnoremap / :set hlsearch<CR>/
-" }
-
-" display {
-    set number
-    set ruler
-    set laststatus=2
-    set cursorline
-    set ignorecase
-" }
-
-" indent {
+		set scrolloff=999
+	
     " translate \t to pipe char | 
-    set listchars=tab:\|\
-    set list
+		set listchars=tab:\|\
+		set list
+
+    " use a mixture of spaces & tabs.
+		set tabstop=4
+
+    " amount of column intendations that will be used when moving blocks of text forward and backward in visual mode
+		set shiftwidth=4
+	
+    " auto indent after /n
+		set autoindent
+
+    " detect file type for language specific indentation - filetype on / plugin on / indent on
+		filetype plugin indent on
 " }
 
-" Format {
-    " use a mixture of spaces & tabs.
-    set tabstop=4
-    " amount of column intendations that will be used when moving blocks of text forward and backward in visual mode
-    set shiftwidth=4
-    " auto indent after /n
-    set autoindent
-    " detect file type for language specific indentation - filetype on / plugin on / indent on
-    filetype plugin indent on
-" }
+
+
+
