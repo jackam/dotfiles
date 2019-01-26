@@ -94,8 +94,8 @@
 		set scrolloff=999
 	
     " translate \t to pipe char | 
-		set listchars=tab:\|\
-		set list
+		" set listchars=tab:\|\
+		" set list
 
     " use a mixture of spaces & tabs.
 		set tabstop=4
