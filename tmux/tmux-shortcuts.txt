@@ -1,0 +1,26 @@
+
+
+
+# new session
+- tmux new -s <name-of-session>
+
+# list sessions
+- tmux ls
+
+# kill session
+- tmux kill-session -t <name-of-session>
+
+# kill all sessions
+- tmux kill-session -a
+
+# new window
+- <ctrl-b> c
+
+# split pane vertically
+- <ctrl-b> %
+
+# split pane horizontally
+- <ctrl-b> "
+
+# switch pane direction
+- <ctrl-b> <up/down/left/right>-arrow
