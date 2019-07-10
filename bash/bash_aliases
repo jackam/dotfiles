@@ -1,0 +1,27 @@
+
+
+# change directory {
+	alias opt='cd /opt'
+	alias home='cd /home/$USER'
+	alias dev='cd /home/$USER/dev'
+	alias tmp='cd /home/$USER/tmp'
+	alias ssh='cd /home/$USER/.ssh'
+	alias music='cd /home/$USER/Music'
+	alias movies='cd /home/$USER/Movies'
+	alias backup='cd /home/$USER/backup'
+	alias desktop='cd /home/$USER/Desktop'
+	alias pictures='cd /home/$USER/Pictures'
+	alias software='cd /home/$USER/software'
+	alias documents='cd /home/$USER/Documents'
+	alias downloads='cd /home/$USER/Downloads'
+# }
+
+# run applications {
+	alias studio='/opt/android-studio/bin/studio.sh'
+	alias android='/opt/android-studio/bin/studio.sh'
+	alias android-studio='/opt/android-studio/bin/studio.sh'
+# }
+
+# reference sheet shortcuts
+	alias shortcuts.tmux='grep -A 15 tmux /home/$USER/toolbox/reference.sheet'
+# }
