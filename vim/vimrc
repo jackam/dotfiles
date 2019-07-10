@@ -115,7 +115,7 @@
 		set backup
 
 	" backup directory
-		set backupdir=~/backup
+		set backupdir=~/backup/vim
 
 	" temporary file directory
 		set directory=~/tmp/vim
