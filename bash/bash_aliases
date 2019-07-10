@@ -28,11 +28,19 @@
 	alias android-studio='/opt/android-studio/bin/studio.sh'
 # }
 
+# open file {
+	alias bash_aliases='vim $HOME/.bash_aliases'
+	alias cli.tools='vim $HOME/toolbox/cli.tools'
+	alias reference.sheet='vim $HOME/toolbox/reference.sheet'
+}
+
 # print file contents {
 	alias bash.aliases='cat /home/$USER/.bash_aliases'
 	alias tmux.shortcuts='grep -A 15 tmux /home/$USER/toolbox/reference.sheet'
 # }
 
-
+# time, date, calendar {
+	alias time='date'
+# }
 
 
