@@ -1,5 +1,11 @@
 
 
+# list directory {
+	alias ll='ls -alF'
+	alias la='ls -A'
+	alias l='ls -l'
+# }
+
 # change directory {
 	alias opt='cd /opt'
 	alias home='cd /home/$USER'
@@ -16,12 +22,17 @@
 	alias downloads='cd /home/$USER/Downloads'
 # }
 
-# run applications {
+# run application {
 	alias studio='/opt/android-studio/bin/studio.sh'
 	alias android='/opt/android-studio/bin/studio.sh'
 	alias android-studio='/opt/android-studio/bin/studio.sh'
 # }
 
-# reference sheet shortcuts
-	alias shortcuts.tmux='grep -A 15 tmux /home/$USER/toolbox/reference.sheet'
+# print file contents {
+	alias bash.aliases='cat /home/$USER/.bash_aliases'
+	alias tmux.shortcuts='grep -A 15 tmux /home/$USER/toolbox/reference.sheet'
 # }
+
+
+
+
