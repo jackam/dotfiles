@@ -1,0 +1,65 @@
+"
+" File: .vimrc
+" Author: github.com/jackam
+"
+
+" System {
+	" Disable Vi compat.
+	set nocompatible
+	set paste
+	syntax enable
+	colorscheme embark
+	filetype plugin indent on
+	let base16colorspace=256
+
+	" Set clipboard for Unix-like systems
+	set clipboard+=unnamed
+
+	" leader key <space>
+	let mapleader = " "
+" }
+" UI/buffer control {
+	nnoremap <S-J> :bprev<CR>
+	nnoremap <S-K> :bnext<CR>
+	nnoremap <C-h> <C-W>h
+	nnoremap <C-l> <C-W>l
+	nnoremap <C-j> <C-W>j
+	nnoremap <C-k> <C-W>k
+	nnoremap <leader>h :split<CR>
+	nnoremap <leader>v :vsplit<CR>
+	nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+	nnoremap <leader>c :nohlsearch<CR>
+	nnoremap <leader>\ :nohlsearch<CR>
+" }
+
+" UI/buffer view {
+	set t_Co=256
+	set termguicolors
+	set background=dark
+	set hlsearch
+	set number
+	set ruler
+	set laststatus=2
+	set cursorline
+	set ignorecase
+	set scrolloff=999
+	set tabstop=4
+	set shiftwidth=4
+	set autoindent
+	set timeoutlen=500
+" }
+
+" NERDTree plugin {
+	autocmd VimEnter * NERDTree | wincmd p
+	let g:NERDTreeShowHidden = 1
+" }
+
+
+" Airline plugin: buffers {
+	" Show all buffers as tabs in the tabline
+	let g:airline#extensions#tabline#enabled = 1
+	let g:airline#extensions#tabline#formatter = 'default'
+
+	" Show only file names in airline tabs
+	let g:airline#extensions#tabline#formatter = 'unique_tail'
+" }
