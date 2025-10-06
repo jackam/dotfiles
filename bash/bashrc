@@ -1,6 +1,9 @@
 #!/opt/homebrew/bin/bash
 
-export PATH="/opt/homebrew/bin:$PATH"
+if [[ -d "/opt/homebrew/bin" ]]; then 
+	export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
 export TERM=xterm-256color
 export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
@@ -16,6 +19,7 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 	# alias weather="$HOME/dev/weather.molokai/weather_molokai.sh"
 
 	# functions
+
 	function mkcd() {
 		mkdir -p "$1"
 		cd "$1"
@@ -44,11 +48,10 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 			local name="${1}"
 			local path="${2}"
 
-			if [[ -z "$name" ]] || [[ -z "$path" ]]
-				then
-					echo "Usage: setwd <name> <directory_path>" >&2
-					# exit program
-					return 1
+			if [[ -z "$name" ]] || [[ -z "$path" ]]; then
+				echo "Usage: setwd <name> <directory_path>" >&2
+				# exit program
+				return 1
 			fi
 			
 			# update working directory array
@@ -58,9 +61,8 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 			# save the entire working directory array to the data file			
 			declare -p working_dir > "${WD_DATA_FILE}"
 
-			if [[ -z "${TMUX}" ]]
-				then
-					tmxsrc
+			if [[ -z "${TMUX}" ]]; then
+				tmxsrc
 			fi
 		}
 
@@ -68,52 +70,46 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 			local name="${1}"
 			local path="${working_dir[$name]}"
 
-			if [[ -z "${path}" ]]
-				then
-					echo "Error: Working directory alias '${name}' not found" >&2
-					return 1
+			if [[ -z "${path}" ]]; then
+				echo "Error: Working directory alias '${name}' not found" >&2
+				return 1
 			fi
 
-			if [[ ! -d "${path}" ]]
-				then
-					echo "Error: Directory does not exist -- ${name}:${path}"  >&2
-					return 1
+			if [[ ! -d "${path}" ]]; then
+				echo "Error: Directory does not exist -- ${name}:${path}"  >&2
+				return 1
 			fi
 
 			cd "${path}"
 		}
 
 		function lswd() {
-			if [[ ${#working_dir[@]} == 0 ]]
-				then
-					echo "No stored working directory aliases" >&2
-					return 1
+			if [[ ${#working_dir[@]} == 0 ]]; then
+				echo "No stored working directory aliases" >&2
+				return 1
 			fi
 			
 			echo "--- Working directory aliases ---"
 
-			for name in "${!working_dir[@]}" 
-				do
-					local path="${working_dir[$name]}"
-					printf "%-20s -> %s\n" "${name}" "${path}"	
+			for name in "${!working_dir[@]}"; do
+				local path="${working_dir[$name]}"
+				printf "%-20s -> %s\n" "${name}" "${path}"	
 			done
 		}
 
 		# check if tmux is running > grab the current session > iterate through each pane in the session and run cmd
 		# : source $HOME/.bashrc
 		function tmxsrc() {
-			if [[ -z "$TMUX" ]]
-				then
-					echo "Error: Must be run inside a Tmux session" >&2
-					return 1
+			if [[ -z "$TMUX" ]]; then
+				echo "Error: Must be run inside a Tmux session" >&2
+				return 1
 			fi
 
 			local current_session=$(tmux display-message -p '#{session_name}')
 			echo "Sourcing $HOME/.bashrc in all panes of session: ${current_session}" >&2
 			
-			tmux list-panes -s -F '#{pane_id}' | while read -r pane_id
-				do
-					tmux send-keys -t "$pane_id" 'source $HOME/.bashrc' C-m
+			tmux list-panes -s -F '#{pane_id}' | while read -r pane_id; do
+				tmux send-keys -t "$pane_id" 'source $HOME/.bashrc' C-m
 			done
 
 			echo "Done. All windows updated." >&2
