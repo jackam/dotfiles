@@ -28,7 +28,7 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 		local TOOL="${1}"
 		local TOOLBOX="${XDG_DATA_HOME:-$HOME/.local/share}/toolbox/bash.toolbox"
 		if [[ -f ${TOOLBOX} ]]; then
-			awk "/^#@ $TOOL/,/^@#/" "${TOOLBOX}"
+			awk "/#@ $TOOL/,/@#/" "${TOOLBOX}"
 			else
 				echo "Toolbox not found at: ${TOOLBOX}"
 		fi
