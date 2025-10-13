@@ -34,12 +34,15 @@ set -g base-index 1
 
 # increase repeat timeout
 set -g repeat-time 2000
+
 # move to the window on the left 
 bind -r < previous-window
 bind -r , previous-window
+
 # move to the window on the right
 bind -r > next-window
 bind -r . next-window
+
 # select window 0/1/2/3
 bind u select-window -t 1
 bind i select-window -t 2
