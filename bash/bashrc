@@ -1,11 +1,19 @@
 #!/opt/homebrew/bin/bash
 
+# use recent bash version if homebrew is installed
 if [[ -d "/opt/homebrew/bin" ]]; then 
 	export PATH="/opt/homebrew/bin:$PATH"
 fi
 
-export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
+if [[ -f "/Users/jack/Library/Python/3.9" ]]; then
+	export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
+fi
+
 export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
+
+if [[ -f "${HOME}/.local/share/toolbox" ]]; then 
+	source "${HOME}/.local/share/toolbox/toolbox.sh"
+fi
 
 # alias / shortcut {
 	alias l='ls -Ga'
@@ -13,88 +21,6 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 	alias ls='ls -G'
 	alias ..='cd ..'
 # }
-
-# functions {
-
-	# tool retrieval from toolbox (tb)
-	# usage: tb <tool-name>
-	tb() {
-		if [[ -z "${1}" ]]; then
-			echo "Usage: tb <tool>"
-			return 1
-		fi
-		spinner
-		local TOOL="${1}"
-		local TOOLBOX="${XDG_DATA_HOME:-$HOME/.local/share}/toolbox/shell.toolbox"
-		if [[ -f ${TOOLBOX} ]]; then
-			awk "/#@ $TOOL.tool/,/@#/" "${TOOLBOX}"
-			else
-				echo "Toolbox not found at: ${TOOLBOX}"
-		fi
-	}
-
-	# search toolbox by tag
-	# usage: tb.search <tag>
-	tb.search() {
-		if [[ -z "${1}" ]]; then
-			echo "tb.search <tag>"
-			return 1
-		fi
-		local TAG="${1}"
-		local TOOLBOX="${XDG_DATA_HOME:-$HOME/.local/share}/toolbox/shell.toolbox"
-		if [[ ! -f "${TOOLBOX}" ]]; then
-			echo "Toolbox not found at: ${TOOLBOX}"
-			return 1
-		fi
-		spinner
-		header
-		awk -v tag="${TAG}" '
-			/#@/ {inblock=0; block=""}
-			{block=block $0 "\n"}
-			/#t/ && index(tolower($0), tolower(tag)) {inblock=1}
-			/@#/ && inblock {print block}
-			' "${TOOLBOX}"
-		footer
-	}
-
-	header() {
-		local term_width
-		term_width=$(tput cols)
-		local left="[+] ^^^" 
-		local middle="Toolbox"
-		local right="^^^ [+]"
-		local total_space=$(( term_width - ${#left} - ${#middle} - ${#right} ))
-		local pad_left=$(( total_space / 2 ))
-		local pad_right=$(( total_space - pad_left ))
-		if (( total_space < 0 )); then total_space=0; fi
-		printf "%s%*s%s%*s%s\n\n" "${left}" "${pad_left}" "" "${middle}" "${pad_right}" "" "${right}"
-	}
-	footer() {
-		local term_width
-		term_width=$(tput cols)              # get terminal width
-		local left="[+] ^^^"
-		local right="^^^ [+]"
-		local total_space=$(( term_width - ${#left} - ${#right} ))
-		if (( total_space < 0 )); then total_space=0; fi
-		printf "%s%*s%s\n" "${left}" "${total_space}" "" "${right}"
-	}
-
-	# cli spinner effect for toolbox queries
-	spinner() {
-		local spinarr=('/' '-' '\' '|')  # array of characters
-		local delay=0.1
-		local i c
-		for i in $(seq 1 20); do
-			c="${spinarr[$((i % 4))]}"   # cycle through array
-			printf "\r[%s] Searching toolbox" "$c"
-			sleep "$delay"
-		done
-		printf "\r                     \n"
-	}
-#}
-
-
-
 
 
 
