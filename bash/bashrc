@@ -5,7 +5,6 @@ if [[ -d "/opt/homebrew/bin" ]]; then
 fi
 
 export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
-# export TERM=xterm-256color
 export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 
 # alias / shortcut {
@@ -32,13 +31,10 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 			else
 				echo "Toolbox not found at: ${TOOLBOX}"
 		fi
-		# echo "               "
-		# echo "[+] ^^^"
-		# echo "               "
 	}
 
 	# search toolbox by tag
-	# usage: tb.search <keyword>
+	# usage: tb.search <tag>
 	tb.search() {
 		if [[ -z "${1}" ]]; then
 			echo "tb.search <tag>"
