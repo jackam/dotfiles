@@ -5,13 +5,13 @@ if [[ -d "/opt/homebrew/bin" ]]; then
 	export PATH="/opt/homebrew/bin:$PATH"
 fi
 
-if [[ -f "/Users/jack/Library/Python/3.9" ]]; then
+if [[ -d "/Users/jack/Library/Python/3.9" ]]; then
 	export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
 fi
 
 export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 
-if [[ -f "${HOME}/.local/share/toolbox" ]]; then 
+if [[ -d "${HOME}/.local/share/toolbox" ]]; then 
 	source "${HOME}/.local/share/toolbox/toolbox.sh"
 fi
 
@@ -21,15 +21,4 @@ fi
 	alias ls='ls -G'
 	alias ..='cd ..'
 # }
-
-
-
-
-
-
-
-
-
-
-
 
