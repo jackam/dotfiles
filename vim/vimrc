@@ -47,11 +47,18 @@
 	set timeoutlen=500
 " }
 
+" visual control {
+	" space highlighted forward
+	vnoremap <Tab> :s/^/ /<CR>gv
+	" space highlighted backward
+	vnoremap <S-Tab> :s/^ //<CR>gv
+" }
+
 " NERDTree {
 	noremap <C-n> :NERDTreeToggle<CR>
 " }
 
-" Airline plugin: buffers {
+" Airline plugin: buffer {
 	" Show all buffers as tabs in the tabline
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'default'
