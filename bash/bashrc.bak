@@ -1,13 +1,5 @@
 #!/opt/homebrew/bin/bash
 
-if [[ -d "/opt/homebrew/bin" ]]; then 
-	export PATH="/opt/homebrew/bin:$PATH"
-fi
-
-export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
-# export TERM=xterm-256color
-export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
-
 # alias / shortcut {
 	alias l='ls -Ga'
 	alias ll='ls -Glah'
@@ -15,19 +7,41 @@ export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
 	alias ..='cd ..'
 # }
 
+# set/source directory & path {
+	# use recent bash version if homebrew is installed
+	if [[ -d "/opt/homebrew/bin" ]]; then 
+		export PATH="/opt/homebrew/bin:$PATH"
+	fi
 
+	if [[ -d "/Users/jack/Library/Python/3.9" ]]; then
+		export PATH="/Users/jack/Library/Python/3.9/bin:$PATH"
+	fi
 
+	if [[ -d "${HOME}/.local/share/toolbox" ]]; then 
+		source "${HOME}/.local/share/toolbox/toolbox.sh"
+	fi
 
+	# set XDG vars
+	declare -A XDG
+	XDG[cache]="${HOME}/.local/cache"
+	export XDG_CACHE_HOME="${XDG[cache]}"
 
+	XDG[config]="${HOME}/.config"
+	export XDG_CONFIG_HOME="${XDG[config]}"
 
+	XDG[data]="${HOME}/.local/share"
+	export XDG_DATA_HOME="${XDG[data]}"
 
+	
+	for dir in cache config data; do
+		if [[ ! -d "${XDG[$dir]}" ]]; then
+			echo "Making directory: ${XDG[dir]}"
+			mkdir -p "${XDG[$dir]}"
+		fi
+	done
 
+# }
 
-
-
-
-
-
-
-
-
+# appearance {
+	export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\w\$\[\033[0m\] '
+# }
