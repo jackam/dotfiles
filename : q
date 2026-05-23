@@ -1,0 +1,18 @@
+Remove: header and footer echo lines for visual toolbox display
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Mon Oct 13 22:26:36 2025 -1000
+#
+# On branch main
+# Your branch is ahead of 'origin/main' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   bashrc
+#
+# Untracked files:
+#	dev.bashrc
+#	../iterm2/
+#
